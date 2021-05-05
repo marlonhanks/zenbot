@@ -6,26 +6,26 @@
  *
  * Example: ./darwin.js --selector="bitfinex.ETH-USD" --days="10" --currency_capital="5000" --use_strategies="all | macd,trend_ema,etc" --population="101" --population_data="simulations/generation_data_NUMBERS"
  * Params:
- * --use_strategies=<stragegy_name>,<stragegy_name>,<stragegy_name>   Min one strategy, can include more than one
- * --population_data=<filename>           filename used for continueing backtesting from previous run
- * --generateLaunch=<true>|<false>        will generate .sh and .bat file using the best generation discovered
- * --ignoreLaunchFitness=<true>|<false>   if used with --generateLaunch it will always write a new launch file regardless if latest fitness is greater
- * --floatScanWindow                      Time window used for analyzing data be adjusted every generation
- * --population=<int>                     populate per strategy
- * --maxCores=<int>                       maximum processes to execute at a time default is # of cpu cores in system
- * --selector=<exchange.marketPair>
- * --asset_capital=<float>                amount coin to start sim with
- * --currency_capital=<float>             amount of capital/base currency to start sim with
- * --days=<int>                           amount of days to use when backfilling
- * --noStatSave=<true>|<false>            true:no statistics are saved to the simulation folder
- * --silent=<true>|<false>                true:can improve performance
- * --runGenerations=<int>                 if used run this number of generations, will be shown 1 less due to generations starts at 0
- * --minTrades=<int>                      Minimum wins before generation is considured fit to evolve
+ * --use_strategies=<strategy_name>       One or more strategies comma separated. Requires at least one named strategy. 
+ * --population_data=<filename>           The filename used for continuing backtesting from a previous run.
+ * --generateLaunch=<true>|<false>        Generate .sh and .bat files using the best generation discovered.
+ * --ignoreLaunchFitness=<true>|<false>   If used with --generateLaunch it will always write a new launch file regardless of if the latest fitness is greater.
+ * --floatScanWindow                      Time window used for analyzing data be adjusted for every generation.
+ * --population=<int>                     Population per strategy.
+ * --maxCores=<int>                       Maximum processes to execute at a time. Default is the # of cpu cores in the system.
+ * --selector=<exchange.marketPair>       The exchange and market pair to target. For example, --selector=gdax.BTC-USDC for Coinbase Pro market with Bitcoin-USDCoin pair.
+ * --asset_capital=<float>                Amount of coin available to the simulator to start with.
+ * --currency_capital=<float>             Amount of capital/base currency available to the sim to start with.
+ * --days=<int>                           Amount of days to use when backfilling. 
+ * --noStatSave=<true>|<false>            Set to true and statistics will not be saved to the simulation folder.
+ * --silent=<true>|<false>                Setting to true may improve performance.
+ * --runGenerations=<int>                 Set the number of generations to be used. Count shown is zero based so, count + 1 = # of generations.
+ * --minTrades=<int>                      Minimum number of wins before generation is considured fit to evolve.
  * --fitnessCalcType=<wl / profit / classic / profitwl> Default: Classic. wl will score the highes for wins and losses, profit doesn't care about wins and losses only the higest end balance, classic uses original claculation / profitwl tries to get the highest profit using the lowest win/loss ratio
  *
  *
- * any parameters for sim and or strategy can be passed in and will override the genetic test generated parameter
- * i.e. if --period_length=1m is passed all test will be performed using --period_length=1m instead of trying to find that parameter
+ * Any parameters for sim and/or strategy can be passed in and will override the genetic test generated parameters.
+ * i.e. if --period_length=1m is passed all tests will be performed using --period_length=1m instead of trying to find that parameter.
  *
  */
 
@@ -360,13 +360,13 @@ function simulateGeneration(generateLaunchFile) {
     let bestOverallResult = []
     let prefix = './zenbot.sh sim '
     selectedStrategies.forEach((v) => {
-      let best = pools[v]['pool'].best()
+      let best = results.find(r => r.strategy == v)
       let bestCommand
 
-      if (best.sim) {
-        console.log(`(${best.sim.strategy}) Sim Fitness ${best.sim.fitness}, VS Buy and Hold: ${z(5, (n(best.sim.vsBuyHold).format('0.0') + '%'), ' ').yellow} BuyAndHold Balance: ${z(5, (n(best.sim.buyHold).format('0.000000')), ' ').yellow}  End Balance: ${z(5, (n(best.sim.endBalance).format('0.000000')), ' ').yellow}, Wins/Losses ${best.sim.wins}/${best.sim.losses}, ROI ${z(5, (n(best.sim.roi).format('0.000000')), ' ').yellow}.`)
-        bestCommand = generateCommandParams(best.sim)
-        bestOverallResult.push(best.sim)
+      if (best) {
+        console.log(`(${best.strategy}) Sim Fitness ${best.fitness}, VS Buy and Hold: ${z(5, (n(best.vsBuyHold).format('0.0') + '%'), ' ').yellow} BuyAndHold Balance: ${z(5, (n(best.buyHold).format('0.000000')), ' ').yellow}  End Balance: ${z(5, (n(best.endBalance).format('0.000000')), ' ').yellow}, Wins/Losses ${best.wins}/${best.losses}, ROI ${z(5, (n(best.roi).format('0.000000')), ' ').yellow}.`)
+        bestCommand = generateCommandParams(best)
+        bestOverallResult.push(best)
       } else {
         console.log(`(${results[0].strategy}) Result Fitness ${results[0].fitness}, VS Buy and Hold: ${z(5, (n(results[0].vsBuyHold).format('0.0') + '%'), ' ').yellow} BuyAndHold Balance: ${z(5, (n(results[0].buyHold).format('0.000000')), ' ').yellow}  End Balance: ${z(5, (n(results[0].endBalance).format('0.000000')), ' ').yellow}, Wins/Losses ${results[0].wins}/${results[0].losses}, ROI ${z(5, (n(results.roi).format('0.000000')), ' ').yellow}.`)
         bestCommand = generateCommandParams(results[0])

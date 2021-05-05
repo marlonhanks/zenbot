@@ -32,6 +32,14 @@
     "label": "BTC/EUR"
   },
   {
+    "asset": "BTC",
+    "currency": "SGD",
+    "min_size": "0.00001",
+    "max_size": "10000",
+    "increment": "0.01",
+    "label": "BTC/SGD"
+  },
+  {
     "asset": "ETH",
     "currency": "BTC",
     "min_size": "0.001",
@@ -62,6 +70,14 @@
     "max_size": "10000",
     "increment": "0.01",
     "label": "ETH/EUR"
+  },
+  {
+    "asset": "ETH",
+    "currency": "SGD",
+    "min_size": "0.001",
+    "max_size": "10000",
+    "increment": "0.01",
+    "label": "ETH/SGD"
   },
   {
     "asset": "ETH",
@@ -382,5 +398,117 @@
     "max_size": "10000",
     "increment": "0.01",
     "label": "UNI/USD"
+  },
+  {
+    "asset": "ENJ",
+    "currency": "USD",
+    "min_size": "0.001",
+    "max_size": "10000",
+    "increment": "0.01",
+    "label": "ENJ/USD"
+  },
+  {
+    "asset": "BNT",
+    "currency": "USD",
+    "min_size": "0.001",
+    "max_size": "10000",
+    "increment": "0.01",
+    "label": "BNT/USD"
+  },
+  {
+    "asset": "1IN",
+    "currency": "CHU",
+    "min_size": "0.001",
+    "max_size": "10000",
+    "increment": "0.01",
+    "label": "1IN/CHU"
+  },
+  {
+    "asset": "SKL",
+    "currency": "USD",
+    "min_size": "0.001",
+    "max_size": "10000",
+    "increment": "0.01",
+    "label": "SKL/USD"
+  },
+  {
+    "asset": "GRT",
+    "currency": "USD",
+    "min_size": "0.001",
+    "max_size": "10000",
+    "increment": "0.01",
+    "label": "GRT/USD"
+  },
+  {
+    "asset": "LRC",
+    "currency": "USD",
+    "min_size": "0.001",
+    "max_size": "10000",
+    "increment": "0.01",
+    "label": "LRC/USD"
+  },
+  {
+    "asset": "SAN",
+    "currency": "DUS",
+    "min_size": "0.001",
+    "max_size": "10000",
+    "increment": "0.01",
+    "label": "SAN/DUS"
+  },
+  {
+    "asset": "CUB",
+    "currency": "EUS",
+    "min_size": "0.001",
+    "max_size": "10000",
+    "increment": "0.01",
+    "label": "CUB/EUS"
+  },
+  {
+    "asset": "LPT",
+    "currency": "USD",
+    "min_size": "0.001",
+    "max_size": "10000",
+    "increment": "0.01",
+    "label": "LPT/USD"
+  },
+  {
+    "asset": "BON",
+    "currency": "DUS",
+    "min_size": "0.001",
+    "max_size": "10000",
+    "increment": "0.01",
+    "label": "BON/DUS"
+  },
+  {
+    "asset": "MAT",
+    "currency": "ICU",
+    "min_size": "0.001",
+    "max_size": "10000",
+    "increment": "0.01",
+    "label": "MAT/ICU"
+  },
+  {
+    "asset": "INJ",
+    "currency": "USD",
+    "min_size": "0.001",
+    "max_size": "10000",
+    "increment": "0.01",
+    "label": "INJ/USD"
+  },
+  {
+    "asset": "SUS",
+    "currency": "HIU",
+    "min_size": "0.001",
+    "max_size": "10000",
+    "increment": "0.01",
+    "label": "SUS/HIU"
+  },
+  {
+    "asset": "DOG",
+    "currency": "EUS",
+    "min_size": "0.001",
+    "max_size": "10000",
+    "increment": "0.01",
+    "label": "DOG/EUS"
   }
 ]
